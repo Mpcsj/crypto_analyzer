@@ -1,0 +1,8 @@
+coin_table:
+  xpath: '//table[@class="h7vnx2-2 czTsgW cmc-table  "]/tbody/tr'
+  multiple: true
+  children:
+    coin_name:
+      xpath: './/td[3]/div/a/div/div/p'
+    curr_price_in_usd:
+      xpath: './/td[4]/div/a/span'
