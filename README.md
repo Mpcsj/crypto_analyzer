@@ -8,3 +8,6 @@ This project has basically the following structure:
 - Transform by parsing crawled data and making simple validation (removing null values)
 - Saving data in a SQL database (SQLite)
 - Orchestrated via Apache-Airflow
+
+
+* [Airflow configuration](https://airflow.apache.org/docs/apache-airflow/stable/start/local.html)
