@@ -23,6 +23,15 @@ class BaseRepository(ABC):
         except Exception as err:
             print(err)
 
+    def clear_table(self):
+        sql = f"""
+            DELETE FROM {self._collection_name}
+        """
+        try:
+            self.connection.execute_command(sql)
+        except Exception as err:
+            print('Error cleaning table >> ', err)
+
     @abstractmethod
     def _get_create_db_if_not_exists_str(self) -> str:
         pass
