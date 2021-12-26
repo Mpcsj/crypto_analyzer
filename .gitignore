@@ -1,3 +1,4 @@
 airflow
 .env
 *.pyc
+AIRFLOW_HELPER.md
