@@ -1,19 +1,20 @@
-from airflow import DAG
 from datetime import datetime, timedelta
+import os
+from airflow import DAG
+from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
-from airflow.decorators import task
-from pprint import pprint
-from crypto_analyzer.tasks.coin_market_cap.cmc_spiders import CmcSpider
-from crypto_analyzer.tasks.coin_market_cap.cmc_parsers import CmcParser
+
 from crypto_analyzer.tasks.coin_market_cap.cmc_loader import CmcLoader
+from crypto_analyzer.tasks.coin_market_cap.cmc_parsers import CmcParser
+from crypto_analyzer.tasks.coin_market_cap.cmc_spiders import CmcSpider
 
 
 def setup_dag2():
     default_args = {
         'owner': 'airflow',
         'depends_on_past': False,
-        'email': ['marcosjunioribm@gmail.com'],
+        'email': [[os.environ.get('ADMIN_EMAIL')]],
         'email_on_retry': False,
         'retries': 1,
         'retry_delay': timedelta(minutes=5)

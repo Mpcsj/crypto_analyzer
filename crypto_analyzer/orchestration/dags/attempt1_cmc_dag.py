@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-
+import os
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
@@ -11,7 +11,7 @@ from crypto_analyzer.tasks.coin_market_cap.cmc_spiders import CmcSpider
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'email': ['marcosjunioribm@gmail.com'],
+    'email': [os.environ.get('ADMIN_EMAIL')],
     'email_on_retry': False,
     'retries': 1,
     'retry_delay': timedelta(minutes=5)
