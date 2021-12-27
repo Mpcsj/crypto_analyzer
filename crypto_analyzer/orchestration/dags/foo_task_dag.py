@@ -1,12 +1,8 @@
-import random
+import os
 from datetime import timedelta, datetime
 
 from airflow import DAG
-from airflow.operators.python import PythonOperator, BranchPythonOperator
-from airflow.operators.dummy import DummyOperator
-import os
-
-from airflow.utils.trigger_rule import TriggerRule
+from airflow.operators.python import PythonOperator
 
 from crypto_analyzer.tasks.foo_distributed_data_processing.foo_task1 import FooTask1
 from crypto_analyzer.tasks.foo_distributed_data_processing.foo_task2 import FooTask2
@@ -24,7 +20,7 @@ with DAG(
         dag_id='foo_task_dag',
         default_args=default_args,
         start_date=datetime(2021, 12, 26),
-        schedule_interval="*/10 * * * *",  # every 5 minutes
+        schedule_interval="*/10 * * * *",  # every 10 minutes
         tags=["task_w_multiworker_stag6"]
 ) as dag:
     task1 = PythonOperator(
